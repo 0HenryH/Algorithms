@@ -1,7 +1,10 @@
 #pragma once
-#define null 0
+#define NULL 0
 #define STACK_INIT_SIZE 2
 #define L (sizeof(Type))
+#define OK 1
+#define FALSE 0
+typedef int status;
 template<class Type>
 class Mystack
 {
@@ -11,13 +14,13 @@ private:
 	int stack_size;
 public:
 	Mystack();
-	bool is_empty();
+	status is_empty();
 	void increse_size();
 	int stack_length();
-	bool clear_stack();
-	bool get_top(Type * e);
-	bool push(Type e);
-	bool pop(Type * e);
+	status clear_stack();
+	status get_top(Type * e);
+	status push(Type e);
+	status pop(Type * e);
 	~Mystack();
 };
 
@@ -28,14 +31,14 @@ Mystack<Type>::Mystack()
 	base = top = new Type[STACK_INIT_SIZE];
 }
 template<class Type>
-bool Mystack<Type>::is_empty()
+status Mystack<Type>::is_empty()
 {
 	if (base == top)
 	{
-		return 1;
+		return OK;
 	}
 	else
-		return 0;
+		return FALSE;
 }
 template<class Type>
 void Mystack<Type>::increse_size()
@@ -57,52 +60,52 @@ int Mystack<Type>::stack_length()
 	return (top - base);
 }
 template<class Type>
-bool Mystack<Type>::clear_stack()
+status Mystack<Type>::clear_stack()
 {
 	int i;
 	if (!stack_length())
 	{
 		for (i = 0; i < stack_length(); i++)
 		{
-			base[i] = null;
+			base[i] = NULL;
 		}
-		return 1;
+		return OK;
 	}
 	else
-		return 0;  //The stack is already empty
+		return FALSE;  //The stack is already empty
 }
 template<class Type>
-bool Mystack<Type>::get_top(Type * e)
+status Mystack<Type>::get_top(Type * e)
 {
 	if (!is_empty())
 	{
 		*e = *(top-1);
-		return 1;
+		return OK;
 	}
 	else
 	{
-		return 0;
+		return FALSE;
 	}
 }
 
 template<class Type>
-bool Mystack<Type>::push(Type e)
+status Mystack<Type>::push(Type e)
 {
 	if (stack_length() >= stack_size)
 	{
 		increse_size();
-		if (!base) return 0;
+		if (!base) return FALSE;
 	}
 	*(top++) = e;
-	return 1;
+	return OK;
 }
 template<class Type>
-bool Mystack<Type>::pop(Type * e)
+status Mystack<Type>::pop(Type * e)
 {
 	if (!is_empty())
 	{
 		*e = *(--top);
-		*top = null;
+		*top = NULL;
 		if (stack_length() < 0.25*stack_size)
 		{
 			int i;
@@ -116,14 +119,14 @@ bool Mystack<Type>::pop(Type * e)
 			delete base;
 			base = temp;
 		}
-		return 1;
+		return OK;
 	}
 	else
-		return 0;
+		return FALSE;
 }
 template<class Type>
 Mystack<Type>::~Mystack()
 {
-	top = base = null;
+	top = base = NULL;
 }
 
