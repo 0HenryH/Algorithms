@@ -6,32 +6,32 @@
 #define FALSE 0
 typedef int status;
 template<class Type>
-class Mystack
+class STACK_S
 {
 private:
 	Type * base;
 	Type * top;
 	int stack_size;
 public:
-	Mystack();
+	STACK_S();
 	status is_empty();
 	void increse_size();
 	int stack_length();
 	status clear_stack();
 	status get_top(Type * e);
 	status push(Type e);
-	status pop(Type * e);
-	~Mystack();
+	status pop(Type &e);
+	~STACK_S();
 };
 
 template<class Type>
-Mystack<Type>::Mystack()
+STACK_S<Type>::STACK_S()
 {
 	stack_size = STACK_INIT_SIZE;
 	base = top = new Type[STACK_INIT_SIZE];
 }
 template<class Type>
-status Mystack<Type>::is_empty()
+status STACK_S<Type>::is_empty()
 {
 	if (base == top)
 	{
@@ -41,7 +41,7 @@ status Mystack<Type>::is_empty()
 		return FALSE;
 }
 template<class Type>
-void Mystack<Type>::increse_size()
+void STACK_S<Type>::increse_size()
 {
 	Type * temp;
 	int i;
@@ -55,12 +55,12 @@ void Mystack<Type>::increse_size()
 	base = temp;
 }
 template<class Type>
-int Mystack<Type>::stack_length()
+int STACK_S<Type>::stack_length()
 {
 	return (top - base);
 }
 template<class Type>
-status Mystack<Type>::clear_stack()
+status STACK_S<Type>::clear_stack()
 {
 	int i;
 	if (!stack_length())
@@ -75,11 +75,11 @@ status Mystack<Type>::clear_stack()
 		return FALSE;  //The stack is already empty
 }
 template<class Type>
-status Mystack<Type>::get_top(Type * e)
+status STACK_S<Type>::get_top(Type * e)
 {
 	if (!is_empty())
 	{
-		*e = *(top-1);
+		*e = *(top - 1);
 		return OK;
 	}
 	else
@@ -89,7 +89,7 @@ status Mystack<Type>::get_top(Type * e)
 }
 
 template<class Type>
-status Mystack<Type>::push(Type e)
+status STACK_S<Type>::push(Type e)
 {
 	if (stack_length() >= stack_size)
 	{
@@ -100,11 +100,11 @@ status Mystack<Type>::push(Type e)
 	return OK;
 }
 template<class Type>
-status Mystack<Type>::pop(Type * e)
+status STACK_S<Type>::pop(Type &e)
 {
 	if (!is_empty())
 	{
-		*e = *(--top);
+		e = *(--top);
 		*top = NULL;
 		if (stack_length() < 0.25*stack_size)
 		{
@@ -125,7 +125,7 @@ status Mystack<Type>::pop(Type * e)
 		return FALSE;
 }
 template<class Type>
-Mystack<Type>::~Mystack()
+STACK_S<Type>::~STACK_S()
 {
 	top = base = NULL;
 }

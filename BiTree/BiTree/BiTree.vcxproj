@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{87F5F16D-1A6D-481B-AFF5-EFE4110A1C39}</ProjectGuid>
-    <RootNamespace>MyStack_Sequential</RootNamespace>
+    <ProjectGuid>{2DD2D52D-DD03-41AC-BB5C-37076FC4E4BF}</ProjectGuid>
+    <RootNamespace>BiTree</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
