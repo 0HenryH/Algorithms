@@ -18,7 +18,7 @@ public:
 	void increse_size();
 	int stack_length();
 	status clear_stack();
-	status get_top(Type * e);
+	status get_top(Type &e);
 	status push(Type e);
 	status pop(Type &e);
 	~STACK_S();
@@ -75,11 +75,11 @@ status STACK_S<Type>::clear_stack()
 		return FALSE;  //The stack is already empty
 }
 template<class Type>
-status STACK_S<Type>::get_top(Type * e)
+status STACK_S<Type>::get_top(Type &e)
 {
 	if (!is_empty())
 	{
-		*e = *(top - 1);
+		e = *(top - 1);
 		return OK;
 	}
 	else

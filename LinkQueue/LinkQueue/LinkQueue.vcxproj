@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{2DD2D52D-DD03-41AC-BB5C-37076FC4E4BF}</ProjectGuid>
-    <RootNamespace>BiTree</RootNamespace>
+    <ProjectGuid>{9DCAB89D-09E3-43F4-98E0-3C7BA68195AD}</ProjectGuid>
+    <RootNamespace>LinkQueue</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -111,11 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="LinkQueue.h" />
-    <ClInclude Include="STACK_S.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,6 @@
 #include<iostream>
 #include"STACK_S.h"
+#include"LinkQueue.h"
 using namespace std;
 #define OVERFLOW -2
 #define OK 1
@@ -15,7 +16,7 @@ typedef  struct BiTNode {
 Status CreateBiTree(BiTree &T);
 //ÏÈÐò¹¹Ôì¶þ²æÊ÷
 Status Visit(ElemType e);
-Status PreOrderTraverse(BiTree T, Status(*Visit)(ElemType));
+//Status PreOrderTraverse(BiTree T, Status(*Visit)(ElemType));
 
 
 Status CreateBiTree(BiTree &T)
@@ -43,6 +44,7 @@ Status Visit(ElemType e)
 	return OK;
 
 }
+/*
 Status PreOrderTraverse(BiTree T, Status(*Visit)(ElemType))
 {
 	if (T)
@@ -61,6 +63,28 @@ Status PreOrderTraverse(BiTree T, Status(*Visit)(ElemType))
 	}
 	return OK;
 }
+*/
+Status PreOrderTraverse2(BiTree T, Status(*Visit)(ElemType)) //·ÇµÝ¹é
+{
+
+	STACK_S<BiTree> stack;
+	while (T || (!stack.is_empty()))
+	{
+		if (T)
+		{
+			if (!Visit(T->data)) return FALSE;
+			stack.push(T);
+			T = T->lchild;
+		}
+		else
+		{
+			stack.pop(T);
+			T = T->rchild;
+		}
+	}
+	return OK;
+}
+/*
 Status MidOrderTraverse(BiTree T, Status(*Visit)(ElemType))
 {
 	if (T)
@@ -79,28 +103,27 @@ Status MidOrderTraverse(BiTree T, Status(*Visit)(ElemType))
 	}
 	return OK;
 }
-
-Status InOrderTraverse(BiTree T, Status(*Visit)(ElemType)) //·ÇµÝ¹é
+*/
+Status MidOrderTraverse2(BiTree T, Status(*Visit)(ElemType)) //·ÇµÝ¹é
 {
 	STACK_S<BiTree> stack;
-	BiTree p = T;
-	while (p || (!stack.is_empty()))
+	while (T || (!stack.is_empty()))
 	{
-		if (p)
+		if (T)
 		{
-			stack.push(p);
-			p = p->lchild;
+			stack.push(T);
+			T = T->lchild;
 		}
 		else
 		{
-			stack.pop(p);
-			if(!Visit(p->data)) return FALSE;
-			p = p->rchild;
+			stack.pop(T);
+			if (!Visit(T->data)) return FALSE;
+			T = T->rchild;
 		}
 	}
 	return OK;
 }
-
+/*
 Status PostOrderTraverse(BiTree T, Status(*Visit)(ElemType))
 {
 	if (T)
@@ -119,22 +142,66 @@ Status PostOrderTraverse(BiTree T, Status(*Visit)(ElemType))
 	}
 	return OK;
 }
+*/
+Status PostOrderTraverse2(BiTree T, Status(*Visit)(ElemType))
+{
+	STACK_S<BiTree> stack;
+	BiTree PreVisitNode = NULL;
+	stack.push(T);
+	while(!stack.is_empty())
+	{
+		stack.get_top(T);
+		if (((!(T->lchild)) && (!(T->rchild))) || (T->lchild == PreVisitNode) || (T->rchild == PreVisitNode))
+		{
+			if (!Visit(T->data)) return FALSE;
+			stack.pop(PreVisitNode);
+		}
+		else
+		{
+			if (T->rchild) stack.push(T->rchild);
+			if (T->lchild) stack.push(T->lchild);
+		}
+	}
+	return OK;
+}
 
+Status LevelTraverse(BiTree T, Status(*Visit)(ElemType))
+{
+	LinkQueue<BiTree> q;
+	if (T) q.EnQueue(T);
+	else return FALSE;
+	while (!(q.isEmpty()))
+	{
+		q.DeQueue(T);
+		Visit(T->data);
+		if (T->lchild) 
+			q.EnQueue(T->lchild);
+		if (T->rchild) 
+			q.EnQueue(T->rchild);
+	}
+	return OK;
+}
 void main()
 {
 	cout << "Create a BiTree" << endl;
 	BiTree T = NULL;
 	CreateBiTree(T);
-	cout << "S!" << endl;
+	cout << "---------Success!---------" << endl;
 	cout << "²âÊÔÏÈÐò±éÀú : ";
-	PreOrderTraverse(T, Visit);
+	//PreOrderTraverse(T, Visit);
+	PreOrderTraverse2(T, Visit);
 	cout << endl;
 	cout << "²âÊÔÖÐÐò±éÀú : ";
-	MidOrderTraverse(T, Visit);
-	InOrderTraverse(T, Visit);
+	//MidOrderTraverse(T, Visit);
+	MidOrderTraverse2(T, Visit);
 	cout << endl;
 	cout << "²âÊÔºóÐò±éÀú : ";
-	PostOrderTraverse(T, Visit);
+	//PostOrderTraverse(T, Visit);
+	PostOrderTraverse2(T, Visit);
 	cout << endl;
+	cout << "²âÊÔ²ãÐò±éÀú : ";
+	LevelTraverse(T, Visit);
+	cout << endl;
+	cout << "---------End Test---------" << endl;
 	system("pause");
 }
