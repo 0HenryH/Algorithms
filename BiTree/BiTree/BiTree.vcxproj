@@ -114,6 +114,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LinkList.h" />
     <ClInclude Include="LinkQueue.h" />
     <ClInclude Include="STACK_S.h" />
   </ItemGroup>
