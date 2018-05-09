@@ -1,10 +1,3 @@
-/*
-待修改:
-1. 枚举类型
-2. 相关信息
-*/
-
-
 #include<iostream>
 #include<iomanip>
 using namespace std;
@@ -18,8 +11,8 @@ typedef int status;
 
 #define INFINITY 1000
 #define MAX_VERTEX_NUM 20
-//typedef enum{DG=1,DN=2,UDG=3,UDN=4} GraphKind;
-typedef int GraphKind;
+typedef enum{DG=1,DN=2,UDG=3,UDN=4} GraphKind;
+//typedef int GraphKind;
 typedef int VRType;
 typedef char InfoType;
 
@@ -163,15 +156,18 @@ status CreateUDG(MGraph &G)
  
 status CreateGraph(MGraph &G)
 {
+	int Kind;
 	cout << "输入图的类型" << endl;
 	cout << "1-有向图 2-有向网 3-无向图 4-无向网" << endl;
-	cin >> G.kind;
+	//cin >> G.kind;
+	cin >> Kind;
+	G.kind = (GraphKind)(Kind);
 	switch (G.kind)
 	{
-	case 1: return CreateDG(G);
-	case 2: return CreateDN(G);
-	case 3: return CreateUDG(G);
-	case 4: return CreateUDN(G);
+	case DG: return CreateDG(G);
+	case DN: return CreateDN(G);
+	case UDG: return CreateUDG(G);
+	case UDN: return CreateUDN(G);
 	default: return ERROR;
 	}
 }
