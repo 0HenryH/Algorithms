@@ -19,30 +19,4 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Graph.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_lnk.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_L_UDG.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="c.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_L_DG.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_L_UDN.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph_L_DN.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkQueue.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>
