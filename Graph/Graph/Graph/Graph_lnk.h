@@ -34,6 +34,7 @@ public:
 	virtual status depthTraverse();
 	virtual status DFS(int v);
 	virtual status breadthTraverse();
+	virtual vertextype get_vex(int i);
 protected:
 	Vnode<vertextype> VErtices[MAX_VERTEX_NUM];
 };
@@ -121,3 +122,9 @@ status Graph_lnk<vertextype>::breadthTraverse()
 	}//for
 	return OK;
 }//BFSTraverse
+
+template<class vertextype>
+vertextype Graph_lnk<vertextype>::get_vex(int i)
+{
+	return VErtices[i].data;
+}

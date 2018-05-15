@@ -12,6 +12,7 @@ struct QNode
 public:
 	Type data;
 	QNode<Type> * next;
+	QNode<Type> * priou;
 };
 
 template<class Type>

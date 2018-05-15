@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include"LinkQueue.h"
+#include"adaptedQ.h"
 #define OVERFLOW -2
 #define OK 1
 #define FALSE 0
@@ -33,6 +34,7 @@ public:
 	virtual status DFS(int v) = 0;
 	virtual status Visit(int v) = 0;
 	virtual status breadthTraverse() = 0;
+	virtual vertextype get_vex(int i)=0;
 protected:
 	GraphKind kind;
 	int vexnum, arcnum;

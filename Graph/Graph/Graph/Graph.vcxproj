@@ -68,6 +68,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adaptedQ.h" />
     <ClInclude Include="c.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Graph_lnk.h" />

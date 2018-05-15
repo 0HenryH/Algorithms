@@ -8,6 +8,7 @@ class Graph_L_UDN :
 {
 public:
 	Graph_L_UDN(int vexn, int arcn);
+	Graph_L_UDN(const Graph_L_UDN & G);
 	//~Graph_L_UDN();	
 };
 template<class vertextype>
@@ -45,4 +46,14 @@ Graph_L_UDN<vertextype>::Graph_L_UDN(int vexn, int arcn)
 		s->nextarc = VErtices[Location(v2)].firstarc;
 		VErtices[Location(v2)].firstarc = s;
 	}
+}
+
+template<class vertextype>
+Graph_L_UDN<vertextype>::Graph_L_UDN(const Graph_L_UDN<vertextype> &G)
+{
+	int i;
+	this->arcnum = G.get_arcnum();
+	this->vexnum = G.get_vexnum();
+	this->kind = UDN;
+	for (i = 0; i < this->vexnum; i++) this->VErtices[i].data = G.get_vex(i);
 }
